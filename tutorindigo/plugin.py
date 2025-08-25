@@ -120,6 +120,8 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
+RUN npm install @edly-io/indigo-frontend-component-footer@^3.0.0
+RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^4.0.0'
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
 
 """,
@@ -208,7 +210,25 @@ for mfe in indigo_styled_mfes:
                     id: 'default_contents',
                     type: DIRECT_PLUGIN,
                     priority: 1,
-                    RenderWidget: <IndigoFooter />,
+                    RenderWidget: () => (
+               <div className="footer-top">
+                   <div className="powered-area">
+                       <div className="logo-list">
+                           <span>Powered by     </span>
+                               <a href="http://max-solution.com" rel="noreferrer" target="_blank">
+                                  <img
+                                      src="http://learn.yb.my/static/indigo/images/tutor-logo.fd2809d0356f.png"
+                                      alt="Max Solution"
+                                      width="57"
+                                   />
+                               </a>
+                       </div>
+                   </div>
+                   <span className="copyright-site">
+                       Copyrights &copy; 2025. All Rights Reserved.
+                   </span>
+               </div>
+             )
                 },
             },
             {
